@@ -1,13 +1,24 @@
-node{
-
-                  checkout([$class: 'GitSCM', 
+pipeline {
+    agent any 
+    stages {
+        stage('Build') { 
+            steps {
+                checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']], 
                     doGenerateSubmoduleConfigurations: false, 
                     extensions: [[$class: 'LocalBranch', localBranch: 'master']], 
                     submoduleCfg: [], 
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
-
-              withCredentials([string(credentialsId: 'teamscale_id', variable: 'TOKEN')]) {
+            }
+        }
+        stage('Test') { 
+            steps {
+                // 
+            }
+        }
+        stage('Deploy') { 
+            steps {
+             withCredentials([string(credentialsId: 'teamscale_id', variable: 'TOKEN')]) {
                 echo '$TOKEN'
                 echo $TOKEN
                 step([$class: 'TeamscaleUploadBuilder', 
@@ -19,5 +30,8 @@ node{
                   uploadMessage: 'Test',
                   antPatternForFileScan: '**/*.simple',
                   reportFormatId: 'SIMPLE']) // OK
-              }  
+              } 
+            }
+        }
+    }
 }
