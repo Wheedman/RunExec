@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-               withCredentials([string(credentialsId: 'teamscale_file', variable: 'TEAMSCALE_ID')]) {
+               withCredentials([file(credentialsId: 'teamscale_file', variable: 'TEAMSCALE_ID')]) {
                 echo '$TEAMSCALE_ID'
                 step([$class: 'TeamscaleUploadBuilder', 
                   url: 'http://localhost:8100',
