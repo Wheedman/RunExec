@@ -11,11 +11,6 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
             }
         }
-        stage('Test') { 
-            steps {
-                // 
-            }
-        }
         stage('Deploy') { 
             steps {
              withCredentials([string(credentialsId: 'teamscale_id', variable: 'TOKEN')]) {
