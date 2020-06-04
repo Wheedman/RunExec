@@ -8,6 +8,7 @@ node{
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
 
               withEnv(['TEAMSCALE_ID = credentials(\'teamscale_id\')']) {
+                echo '$TEAMSCALE_ID'
                 step([$class: 'TeamscaleUploadBuilder', 
                   url: 'http://localhost:8100',
                   userName: 'admin',
