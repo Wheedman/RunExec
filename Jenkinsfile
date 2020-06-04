@@ -1,8 +1,5 @@
 node{
-  environment {
-        TEAMSCALE_ID     = credentials('teamscale_id')
-  }
-  
+ 
   stages {
         stage('Example stage 1') {
             steps {
@@ -13,7 +10,8 @@ node{
                     submoduleCfg: [], 
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
 
-            step([$class: 'TeamscaleUploadBuilder', 
+              withEnv(['TEAMSCALE_ID = credentials(\'teamscale_id\')']) {
+                step([$class: 'TeamscaleUploadBuilder', 
                   url: 'http://localhost:8100',
                   userName: 'admin',
                   ideKey: 'team',
@@ -22,6 +20,7 @@ node{
                   uploadMessage: 'Test',
                   antPatternForFileScan: '**/*.simple',
                   reportFormatId: 'SIMPLE']) // OK
+              }
             }
         }
   }
