@@ -12,6 +12,11 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
             }
         }
+        stage('Test'){
+            steps {
+                greet antPatternForFileScan: '**/*.simple', ideKey: <object of type hudson.util.Secret>, partition: 'pipeline', reportFormatId: 'SIMPLE', teamscaleProject: 'jenkinsplugin', uploadMessage: 'Test', url: 'http://localhost:8100', userName: 'admin'
+            }
+        }
         stage('Deploy') { 
             steps {
                withCredentials([file(credentialsId: 'teamscale_file', variable: 'TEAMSCALE_ID')]) {
