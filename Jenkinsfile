@@ -5,11 +5,14 @@ node{
             extensions: [[$class: 'LocalBranch', localBranch: 'master']], 
             submoduleCfg: [], 
             userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
+  environment {
+        TEAMSCALE_ID     = credentials('teamscale_id')
+    }
   step([$class: 'TeamscaleUploadBuilder', 
         url: 'http://localhost:8100',
         userName: 'admin',
-        ideKey: 'n96xxdkcotjmk4kyzJfCRujcj5sg7W7o',
-        teamscaleProject: 'jenkinsplugin',
+        ideKey: 'team',
+        teamscaleProject: $TEAMSCALE_ID,
         partition: 'pipeline',
         uploadMessage: 'Test',
         antPatternForFileScan: '**/*.simple',
