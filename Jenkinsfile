@@ -12,7 +12,7 @@ node{
                   url: 'http://localhost:8100',
                   userName: 'admin',
                   ideKey: 'team',
-                  teamscaleProject: $TEAMSCALE_ID,
+                  teamscaleProject: '$TEAMSCALE_ID',
                   partition: 'pipeline',
                   uploadMessage: 'Test',
                   antPatternForFileScan: '**/*.simple',
