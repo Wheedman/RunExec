@@ -1,8 +1,5 @@
 node{
- 
-  stages {
-        stage('Example stage 1') {
-            steps {
+
                   checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']], 
                     doGenerateSubmoduleConfigurations: false, 
@@ -20,9 +17,5 @@ node{
                   uploadMessage: 'Test',
                   antPatternForFileScan: '**/*.simple',
                   reportFormatId: 'SIMPLE']) // OK
-              }
-            }
-        }
-  }
-  
+              }  
 }
