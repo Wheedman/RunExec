@@ -1,25 +1,20 @@
 pipeline {
-    agent any 
-    stages {
-        stage('Build') { 
-            steps {
-                checkout([$class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
-                    doGenerateSubmoduleConfigurations: false, 
-                    extensions: [[$class: 'LocalBranch', localBranch: 'master']], 
-                    submoduleCfg: [], 
-                    userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
-            }
-        }
+    
+        checkout([$class: 'GitSCM', 
+            branches: [[name: '*/master']], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [[$class: 'LocalBranch', localBranch: 'master']], 
+            submoduleCfg: [], 
+            userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
+
         stage('Deploy') { 
             steps {
-             withCredentials([string(credentialsId: 'teamscale_id', variable: 'TOKEN')]) {
-                echo '$TOKEN'
-                echo $TOKEN
+             withCredentials([string(credentialsId: 'teamscale_id', variable: 'TEAMSCALE_ID')]) {
+                echo '$TEAMSCALE_ID'
                 step([$class: 'TeamscaleUploadBuilder', 
                   url: 'http://localhost:8100',
                   userName: 'admin',
-                  ideKey: $TOKEN,
+                  ideKey: '$TEAMSCALE_ID',
                   teamscaleProject: 'jenkinsplugin',
                   partition: 'pipeline',
                   uploadMessage: 'Test',
