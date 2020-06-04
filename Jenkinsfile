@@ -7,13 +7,13 @@ node{
                     submoduleCfg: [], 
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
 
-              withEnv(['TEAMSCALE_ID = credentials(\'teamscale_id\')']) {
-                echo '$TEAMSCALE_ID'
-                echo $TEAMSCALE_ID
+              withCredentials([string(credentialsId: 'teamscale_id', variable: 'TOKEN')]) {
+                echo '$TOKEN'
+                echo $TOKEN
                 step([$class: 'TeamscaleUploadBuilder', 
                   url: 'http://localhost:8100',
                   userName: 'admin',
-                  ideKey: $TEAMSCALE_ID,
+                  ideKey: $TOKEN,
                   teamscaleProject: 'jenkinsplugin',
                   partition: 'pipeline',
                   uploadMessage: 'Test',
