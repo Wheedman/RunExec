@@ -15,8 +15,6 @@ pipeline {
 
         stage('Deploy') { 
             steps {
-               withCredentials([file(credentialsId: 'teamscale_file', variable: 'TEAMSCALE_ID')]) {
-                echo '$TEAMSCALE_ID'
                 step([$class: 'TeamscaleUploadBuilder', 
                   url: 'http://localhost:8100',
                   credentialsId: 'teamscale_id', 
@@ -25,7 +23,6 @@ pipeline {
                   uploadMessage: 'Test',
                   antPatternForFileScan: '**/*.simple',
                   reportFormatId: 'SIMPLE']) // OK
-               } 
             }
         }
     }
