@@ -19,8 +19,7 @@ pipeline {
                 echo '$TEAMSCALE_ID'
                 step([$class: 'TeamscaleUploadBuilder', 
                   url: 'http://localhost:8100',
-                  userName: 'admin',
-                  ideKey: hudson.util.Secret.fromString('$TEAMSCALE_ID'),
+                  credentialsId: 'teamscale_id', 
                   teamscaleProject: 'jenkinsplugin',
                   partition: 'pipeline',
                   uploadMessage: 'Test',
