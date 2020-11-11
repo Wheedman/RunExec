@@ -19,7 +19,12 @@ pipeline {
 
             steps {
                 script {
-                 def scmVars = git 'https://github.com/Wheedman/RunExec.git'
+                 def scmVars = checkout([$class: 'GitSCM', 
+                    branches: [[name: '*/master']], 
+                    doGenerateSubmoduleConfigurations: false, 
+                    extensions: [[$class: 'LocalBranch', localBranch: 'master']], 
+                    submoduleCfg: [], 
+                    userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])  
                  GIT_COMMIT = scmVars.GIT_COMMIT
              }
                 echo "Commit ist ${GIT_COMMIT}"
