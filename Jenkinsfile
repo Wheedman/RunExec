@@ -13,8 +13,19 @@ pipeline {
             }
         }
          stage('Test') { 
+             environment {
+                 GIT_COMMIT = """${sh(
+                returnStdout: false,
+                     script{
+                          def scmVars = git 'https://github.com/Wheedman/RunExec.git'
+                          scmVars.GIT_COMMIT
+                     }
+            )}"""
+             }
             steps {
-                git 'https://github.com/Wheedman/RunExec.git'
+                script{
+                    git 'https://github.com/Wheedman/RunExec.git'
+                }
                 teamscale antPatternForFileScan: '**/*.simple', credentialsId: 'teamscale_id', partition: 'pipeline', reportFormatId: 'SIMPLE', teamscaleProject: 'jenkinsplugin', uploadMessage: 'Test', url: 'http://localhost:8100'
             }
         }
