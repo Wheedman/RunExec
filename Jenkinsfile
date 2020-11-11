@@ -15,20 +15,13 @@ pipeline {
          stage('Test') { 
              environment {
                  TEST = '15'
-                 GIT_COMMIT = """${sh(
-                returnStdout: true,
-                     script:  script{
-                         def scmVars = git 'https://github.com/Wheedman/RunExec.git'
-                         echo "${scmVars.GIT_COMMIT}"
-                     }
-                   
-            )}"""
+                 GIT_COMMIT = 'Whatever'
              }
             steps {
                 echo "Test is ${TEST}"
                 echo "Commit ist ${GIT_COMMIT}"
-                git 'https://github.com/Wheedman/RunExec.git'
-                teamscale antPatternForFileScan: '**/*.simple', credentialsId: 'teamscale_id', partition: 'pipeline', reportFormatId: 'SIMPLE', teamscaleProject: 'jenkinsplugin', uploadMessage: 'Test', url: 'http://localhost:8100'
+               // git 'https://github.com/Wheedman/RunExec.git'
+               // teamscale antPatternForFileScan: '**/*.simple', credentialsId: 'teamscale_id', partition: 'pipeline', reportFormatId: 'SIMPLE', teamscaleProject: 'jenkinsplugin', uploadMessage: 'Test', url: 'http://localhost:8100'
             }
         }
 
