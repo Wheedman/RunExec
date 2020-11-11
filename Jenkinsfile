@@ -17,7 +17,10 @@ pipeline {
                  TEST = '15'
                  GIT_COMMIT = 'Whatever'
              }
-             script {
+             
+
+            steps {
+                script {
                  def scmVars = checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']], 
                     doGenerateSubmoduleConfigurations: false, 
@@ -26,8 +29,6 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])  
                  GIT_COMMIT = scmVars.SVN_REVISION
              }
-
-            steps {
                 echo "Test is ${TEST}"
                 echo "Commit ist ${GIT_COMMIT}"
                // git 'https://github.com/Wheedman/RunExec.git'
