@@ -14,7 +14,7 @@ pipeline {
         }
          stage('Test') { 
              environment {
-                 GIT_COMMIT = 'Whatever'
+                 GIT_COMMIT = ''
              }
 
             steps {
@@ -25,7 +25,7 @@ pipeline {
                     extensions: [[$class: 'LocalBranch', localBranch: 'master']], 
                     submoduleCfg: [], 
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])  
-                 GIT_COMMIT = scmVars.GIT_COMMIT
+                 //GIT_COMMIT = scmVars.GIT_COMMIT
              }
                 echo "Commit ist ${GIT_COMMIT}"
                teamscale antPatternForFileScan: '**/*.simple', credentialsId: 'teamscale_id', partition: 'pipeline', reportFormatId: 'SIMPLE', teamscaleProject: 'jenkinsplugin', uploadMessage: 'Test', url: 'http://localhost:8100', revision: "${GIT_COMMIT}"
