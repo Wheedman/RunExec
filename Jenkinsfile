@@ -10,7 +10,7 @@ pipeline {
                     extensions: [[$class: 'LocalBranch', localBranch: 'master']], 
                     submoduleCfg: [], 
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])
-                sh printenv
+                sh 'printenv'
             }
         }
 
