@@ -27,7 +27,7 @@ pipeline {
                     extensions: [[$class: 'LocalBranch', localBranch: 'master']], 
                     submoduleCfg: [], 
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])  
-                 GIT_COMMIT = scmVars.SVN_REVISION
+                 GIT_COMMIT = scmVars.GIT_COMMIT
              }
                 echo "Test is ${TEST}"
                 echo "Commit ist ${GIT_COMMIT}"
