@@ -15,11 +15,12 @@ pipeline {
          stage('Test') { 
              environment {
                  GIT_COMMIT = """${sh(
-                returnStdout: false,
-                     script{
-                          def scmVars = git 'https://github.com/Wheedman/RunExec.git'
-                          scmVars.GIT_COMMIT
+                returnStdout: true,
+                     script:  script{
+                         def scmVars = git 'https://github.com/Wheedman/RunExec.git'
+                         echo 'scmVars.GIT_COMMIT'
                      }
+                   
             )}"""
              }
             steps {
