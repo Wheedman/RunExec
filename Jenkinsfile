@@ -14,7 +14,7 @@ pipeline {
         }
          stage('Test') { 
              environment {
-                 TEST = 15
+                 TEST = '15'
                  GIT_COMMIT = """${sh(
                 returnStdout: true,
                      script:  script{
