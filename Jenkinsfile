@@ -24,7 +24,7 @@ pipeline {
             )}"""
              }
             steps {
-                sh '${GIT_COMMIT}'
+                echo '${GIT_COMMIT}'
                 git 'https://github.com/Wheedman/RunExec.git'
                 teamscale antPatternForFileScan: '**/*.simple', credentialsId: 'teamscale_id', partition: 'pipeline', reportFormatId: 'SIMPLE', teamscaleProject: 'jenkinsplugin', uploadMessage: 'Test', url: 'http://localhost:8100'
             }
