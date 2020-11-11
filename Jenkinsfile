@@ -15,10 +15,10 @@ pipeline {
 
         stage('Deploy') { 
             environment {
-                env.GIT_COMMIT = "${env.GIT_COMMIT}"
+                GIT_COMMIT = "${env.GIT_COMMIT}"
             }
             steps {
-                sh 'echo "JP=$GIT_COMMIT"'
+                sh 'echo "${env.GIT_COMMIT}"'
                 step([$class: 'TeamscaleUploadBuilder', 
                   url: 'http://localhost:8100',
                   credentialsId: 'teamscale_id', 
