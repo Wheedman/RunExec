@@ -15,7 +15,7 @@ pipeline {
 
         stage('Deploy') { 
             environment {
-                GIT_COMMIT = "${env.GIT_COMMIT}"
+                env.GIT_COMMIT = "${env.GIT_COMMIT}"
             }
             steps {
                 sh 'echo "JP=$GIT_COMMIT"'
