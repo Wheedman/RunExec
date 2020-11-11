@@ -18,8 +18,7 @@ pipeline {
                 returnStdout: true,
                      script:  script{
                          def scmVars = git 'https://github.com/Wheedman/RunExec.git'
-                         rev = scmVars.GIT_COMMIT
-                         echo '$rev'
+                         echo '$scmVars.GIT_COMMIT'
                      }
                    
             )}"""
