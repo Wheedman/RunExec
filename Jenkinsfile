@@ -14,7 +14,7 @@ pipeline {
         }
          stage('Test') { 
              environment {
-                 GIT_COMMIT = ''
+                 GIT_COMMIT = ""
              }
 
             steps {
