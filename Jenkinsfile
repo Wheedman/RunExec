@@ -12,6 +12,8 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/Wheedman/RunExec']]])  
             }
         }
+       teamscale antPatternForFileScan: '**/*.simple', credentialsId: 'teamscale_id', partition: 'pipeline', reportFormatId: 'SIMPLE', teamscaleProject: 'jenkinsplugin', uploadMessage: 'Test', url: 'http://localhost:8100', revision: "${GIT_COMMIT}"
+
         //  stage('Test') { 
         //      environment {
         //          GIT_COMMIT = ""
