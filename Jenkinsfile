@@ -54,9 +54,8 @@ pipeline {
     }
     post { 
             always {
-            environment {
                  GIT_COMMIT = ""
-            }
+           
                 script {
                  def scmVars = checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']], 
